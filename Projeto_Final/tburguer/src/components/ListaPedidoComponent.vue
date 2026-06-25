@@ -81,17 +81,17 @@ export default {
   },
   methods: {
     async consultarPedidos() {
-      const response = await fetch(`${this.$apiUrl}/pedidos`);
+      const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/pedidos`);
       const dados = await response.json();
       console.log(dados);
       this.listaPedidosRealizados = dados;
     },
     async consultarStatusPedido() {
-      const response = await fetch(`${this.$apiUrl}/status_pedido`);
+      const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/status_pedido`);
       this.listaStatusPedido = await response.json();
     },
     async deletarPedido(id) {
-      const response = await fetch(`${this.$apiUrl}/pedidos/${id}`, {
+      const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/pedidos/${id}`, {
         method: "DELETE",
       });
 
@@ -108,7 +108,7 @@ export default {
       const idPedidoAtualizado = event.target.value;
       const atualizaoJson = JSON.stringify({ statusId: idPedidoAtualizado });
 
-      await fetch(`${this.$apiUrl}/pedidos/${idPedido}`, {
+      await fetch(`${process.env.VUE_APP_API_BASE_URL}/pedidos/${idPedido}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: atualizaoJson,

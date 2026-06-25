@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     async consultarMenu() {
-      const response = await fetch(`${this.$apiUrl}/menu`);
+      const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/menu`);
       const dados = await response.json();
       this.listaBasesAcai = dados.bases_acai || [];
       console.log(this.listaBasesAcai);

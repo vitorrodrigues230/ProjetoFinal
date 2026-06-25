@@ -102,12 +102,12 @@ export default {
   methods: {
     async getListaTamanhos() {
       // Endpoint ajustado para buscar a chave tipos_pontos sem espaços na URL
-      const response = await fetch(`${this.$apiUrl}/tipos_pontos`);
+      const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/tipos_pontos`);
       const dados = await response.json();
       this.listaTamanhos = dados;
     },
     async getOpcionais() {
-      const response = await fetch(`${this.$apiUrl}/opcionais`);
+      const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/opcionais`);
       const dados = await response.json();
       this.listaComplementos = dados.complemento;
       this.listaBebidas = dados.bebidas;
@@ -135,7 +135,7 @@ export default {
       console.log(dadosPedido);
       const dadosJson = JSON.stringify(dadosPedido);
 
-      const response = await fetch(`${this.$apiUrl}/pedidos`, {
+      const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/pedidos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: dadosJson,
